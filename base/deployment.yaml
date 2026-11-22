@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biblioteca-web
+  labels:
+    app: biblioteca-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: biblioteca-web
+  template:
+    metadata:
+      labels:
+        app: biblioteca-web
+    spec:
+      containers:
+        - name: biblioteca-web
+          image: biblioteca-app
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10

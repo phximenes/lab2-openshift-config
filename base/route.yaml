@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: biblioteca-web
+  labels:
+    app: biblioteca-web
+spec:
+  to:
+    kind: Service
+    name: biblioteca-web
+    weight: 100
+  port:
+    targetPort: http
